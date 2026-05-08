@@ -380,6 +380,10 @@
         const url = `https://wa.me/${PHARMACY_WHATSAPP}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
 
+        // Vider le panier
+        cart = [];
+        saveCart();
+
         // Aussi enregistrer en BDD
         document.getElementById('orderForm').submit();
     }
@@ -391,6 +395,12 @@
         updateCartUI();
         updateOrderForm();
     }
+
+    // Vider le panier après soumission formulaire normal
+    document.getElementById('orderForm').addEventListener('submit', function() {
+        cart = [];
+        localStorage.removeItem('pharma_cart');
+    });
 
     // Initialiser
     updateOrderForm();

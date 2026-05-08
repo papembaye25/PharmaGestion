@@ -352,6 +352,13 @@
 
     // Initialiser au chargement
     updateCartUI();
+
+    // Vider le panier si commande réussie
+    @if(session('success'))
+        cart = [];
+        localStorage.removeItem('pharma_cart');
+        updateCartUI();
+    @endif
 </script>
 
 @yield('scripts')
